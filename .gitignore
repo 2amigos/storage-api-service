@@ -1,0 +1,13 @@
+.env
+.env.test
+vendor/
+composer.phar
+.vagrant/
+.phplint-cache
+.idea
+.php_cs.cache
+.phplint.cache
+volumes/ipfs/*
+!volumes/ipfs/.gitkeep
+volumes/mysqldb/*
+!volumes/mysqldb/.gitkeep

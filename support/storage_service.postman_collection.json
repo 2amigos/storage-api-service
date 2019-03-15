@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "2e925906-8414-4fa3-8d08-451bd94dcfa2",
+		"name": "StorageService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"document.all\"]\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/documents/store",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTE5NDkzMzgsImV4cCI6MTU1MTk1NjUzOCwianRpIjoiMVZOT2d5Wnpxbld6SXU5QTJmTXp4eCIsInN1YiI6InRlc3QiLCJzY29wZSI6WyJkb2N1bWVudC5hbGwiXX0.R3iD12qvrIta5AgwS1L1NYkEKPej005dsNeS1IViF-Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "stores",
+							"value": "local",
+							"type": "text"
+						},
+						{
+							"key": "async",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/documents/136b4cdf-736e-488a-a427-b1d1114f376d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents",
+						"136b4cdf-736e-488a-a427-b1d1114f376d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/documents/list?filter=limit(10|1):order(created_at|desc)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTE5NDkzMzgsImV4cCI6MTU1MTk1NjUzOCwianRpIjoiMVZOT2d5Wnpxbld6SXU5QTJmTXp4eCIsInN1YiI6InRlc3QiLCJzY29wZSI6WyJkb2N1bWVudC5hbGwiXX0.R3iD12qvrIta5AgwS1L1NYkEKPej005dsNeS1IViF-Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/documents/list?filter=limit(10|1):order(created_at|desc)",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents",
+						"list"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "limit(10|1):order(created_at|desc)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/documents/136b4cdf-736e-488a-a427-b1d1114f376d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTE5NDkzMzgsImV4cCI6MTU1MTk1NjUzOCwianRpIjoiMVZOT2d5Wnpxbld6SXU5QTJmTXp4eCIsInN1YiI6InRlc3QiLCJzY29wZSI6WyJkb2N1bWVudC5hbGwiXX0.R3iD12qvrIta5AgwS1L1NYkEKPej005dsNeS1IViF-Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "stores",
+							"value": "local",
+							"type": "text"
+						},
+						{
+							"key": "async",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/documents/136b4cdf-736e-488a-a427-b1d1114f376d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents",
+						"136b4cdf-736e-488a-a427-b1d1114f376d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/documents/status/136b4cdf-736e-488a-a427-b1d1114f376d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTE5NDkzMzgsImV4cCI6MTU1MTk1NjUzOCwianRpIjoiMVZOT2d5Wnpxbld6SXU5QTJmTXp4eCIsInN1YiI6InRlc3QiLCJzY29wZSI6WyJkb2N1bWVudC5hbGwiXX0.R3iD12qvrIta5AgwS1L1NYkEKPej005dsNeS1IViF-Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "stores",
+							"value": "local",
+							"type": "text"
+						},
+						{
+							"key": "async",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/documents/status/136b4cdf-736e-488a-a427-b1d1114f376d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents",
+						"status",
+						"136b4cdf-736e-488a-a427-b1d1114f376d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/documents/136b4cdf-736e-488a-a427-b1d1114f376d",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTE5NDkzMzgsImV4cCI6MTU1MTk1NjUzOCwianRpIjoiMVZOT2d5Wnpxbld6SXU5QTJmTXp4eCIsInN1YiI6InRlc3QiLCJzY29wZSI6WyJkb2N1bWVudC5hbGwiXX0.R3iD12qvrIta5AgwS1L1NYkEKPej005dsNeS1IViF-Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "stores",
+							"value": "local",
+							"type": "text"
+						},
+						{
+							"key": "async",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/documents/136b4cdf-736e-488a-a427-b1d1114f376d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents",
+						"136b4cdf-736e-488a-a427-b1d1114f376d"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

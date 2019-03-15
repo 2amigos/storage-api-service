@@ -1,0 +1,38 @@
+version: '2'
+
+volumes:
+  logs:
+      driver: local
+
+services:
+  slim:
+      image: php:7-alpine
+      working_dir: /var/www
+      command: php -S 0.0.0.0:8080 -t public public/index.php
+      environment:
+          docker: "true"
+      ports:
+          - 80:8080
+      volumes:
+          - .:/var/www
+          - logs:/var/www/runtime
+      links:
+        - mysqldb:mysqldb
+  mysqldb:
+      image: mysql:8.0.15
+      restart: unless-stopped
+      command: mysqld --default-authentication-plugin=mysql_native_password
+      environment:
+        - MYSQL_ROOT_PASSWORD=root123
+        - MYSQL_DATABASE=maindb
+        - MYSQL_USER=storage
+        - MYSQL_PASSWORD=storage123
+      ports:
+        - 3310:3306
+      volumes:
+        - ./volumes/mysqldb:/var/lib/mysql
+
+networks:
+  default:
+      external:
+          name: nginx-proxy

@@ -1,0 +1,67 @@
+parameters:
+    stores:
+        local:
+            adapter: 'storage.local.adapter'
+
+# config/services.yaml
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+        # fetching services directly from the container via $container->get() won't work.
+        # The best practice is to be explicit about your dependencies anyway.
+
+    db:
+        class: Doctrine\DBAL\Connection:
+        factory:      Doctrine\DBAL\DriverManager::getConnection
+        arguments:
+            $params:
+                driver:    pdo_mysql
+                host:      '%env(DATABASE_HOST)%'
+                port:      ~
+                user:      '%env(DATABASE_USERNAME)%'
+                password:  '%env(DATABASE_PASSWORD)%'
+                dbname:    '%env(DATABASE_NAME)%'
+                charset:   UTF8
+
+    enqueue.storage.processor:
+        class: App\Application\Console\Processor\StoreDocumentProcessor
+        public: true
+        arguments:
+            $storageFactory: '@storage.adapter.factory'
+            $documentRepository: '@document.repository'
+        tags:
+            - { name: 'enqueue.processor', command: '__command__', processorName: 'storage' }
+
+    storage.adapter.factory:
+        class: App\Infrastructure\Flysystem\StorageFactory
+        public: true
+        arguments:
+            $container: '@service_container'
+            $config: '%stores%'
+
+    document.repository:
+        class: App\Infrastructure\Db\Document\DocumentRepository
+        public: true
+        arguments:
+            $connection: '@db'
+
+    storage.local.adapter:
+        class: League\Flysystem\Adapter\Local
+        public: true
+        arguments:
+            $root: '%env(DOCUMENT_LOCAL_PATH)%'
+            $writeFlags: '%env(int:DOCUMENT_LOCAL_WRITE_FLAGS)%'
+            $linkHandling: '%env(int:DOCUMENT_LOCAL_LINK_HANDLING)%'
+            $permissions: []
+
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../../src/*'
+        exclude: '../../src/{Entity,Migrations,Tests,Kernel.php}'
+
+
