@@ -4,8 +4,7 @@
   
 The Storage service is a microservice that stores files using [league/flysystem]((https://github.com/thephpleague/flysystem)) filesystem abstraction.
 
-It was built to allow our development teams at [2amigos](https://2amigos.us) to avoid having to configure storage adapters over and over on projects   
-involving a microservices infrastructure. It's a combination of two separate applications, one being Symfony's CI application and the other being an API built with Slim3.    
+It was built to allow our development teams at [2amigos](https://2amigos.us) to avoid having to configure storage adapters over and over on projects involving a microservices infrastructure. It's a combination of two separate applications, one being Symfony's CI application and the other being an API built with Slim3.    
   
 The project uses [Monolog](https://github.com/Seldaek/monolog) for logging, [Fractal](http://fractal.thephpleague.com/) as a serializer, [Tactitian](https://tactician.thephpleague.com/) as a command bus, [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) and [Json Web Tokens](https://jwt.io/)   for authentication (this is optional), [Zend filter](https://docs.zendframework.com/zend-filter/) for data filtering and validation, and [Phinx](http://docs.phinx.org/en/latest/) for database migrations.
   
